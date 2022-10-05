@@ -1,27 +1,4 @@
 import { galleryItems } from "./gallery-items.js";
-// Change code below this line
-
-// console.log(galleryItems);
-
-// Создай галерею с возможностью клика по её элементам и просмотра полноразмерного изображения в модальном окне.
-
-// Посмотри демо видео работы галереи.
-
-// Выполняй это задание в файлах 01-gallery.html и 01-gallery.js. Разбей его на несколько подзадач:
-
-// Создание и рендер разметки по массиву данных galleryItems и предоставленному шаблону элемента галереи.
-
-// Реализация делегирования на div.gallery и получение url большого изображения.
-
-// Подключение скрипта и стилей библиотеки модального окна basicLightbox.
-
-// Используй CDN сервис jsdelivr и добавь в проект ссылки на минифицированные(.min) файлы библиотеки.
-
-// Открытие модального окна по клику на элементе галереи. Для этого ознакомься с документацией и примерами.
-
-// Замена значения атрибута src элемента < img > в модальном окне перед открытием.
-
-// Используй готовую разметку модального окна с изображением из примеров библиотеки basicLightbox.
 
 // Ссылка на оригинальное изображение должна храниться в data - атрибуте source на элементе < img >,
 //     и указываться в href ссылки.Не добавляй другие HTML теги или CSS классы кроме тех, что есть в этом шаблоне.
@@ -37,31 +14,19 @@ import { galleryItems } from "./gallery-items.js";
 //   </a>
 // </div>
 
-// Обрати внимание на то, что изображение обернуто в ссылку,
-// а значит при клике по умолчанию пользователь будет перенаправлен на другую страницу.
-// Запрети это поведение по умолчанию.
-// Закрытие с клавиатуры
-
 // Этот функционал не обязателен при сдаче задания, но будет хорошей дополнительной практикой.
 
 // Добавь закрытие модального окна по нажатию клавиши Escape.Сделай так,
 //     чтобы прослушивание клавиатуры было только пока открыто модальное окно.
 //  У библиотеки basicLightbox есть метод для программного закрытия модального окна.
 
-//  {
-//     preview:
-//       'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg',
-//     original:
-//       'https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg',
-//     description: 'Flower Blooms',
-//   },
 const galleryMainDiv = document.querySelector(".gallery");
 // console.log(galleryMainDiv);
 
 const galleryMarkup = createGalleryMarkup(galleryItems);
 // console.log(galleryMarkup);
 galleryMainDiv.insertAdjacentHTML("beforeend", galleryMarkup);
-// galleryMainDiv.addEventListener("click", onPictureClick);
+galleryMainDiv.addEventListener("click", onPictureClick);
 
 function createGalleryMarkup(gallery) {
   return gallery
@@ -72,7 +37,7 @@ function createGalleryMarkup(gallery) {
     <img
       class="gallery__image"
       src="${preview}"
-      data-source="large-image.jpg"
+      data-source="${original}"
       alt="${description}"
     />
   </a>
@@ -81,13 +46,30 @@ function createGalleryMarkup(gallery) {
     .join("");
 }
 
-// function onPictureClick(event) {
-//   event.preventDefault();
-//   console.log(event.target);
+// function onEscPress() {
+
 // }
 
-const instance = basicLightbox.create(galleryMarkup);
+function onPictureClick(event) {
+  event.preventDefault();
+  //   console.log(event.target);
+  if (event.target.tagName !== "IMG") return;
 
-instance.show();
+  console.log(event.target);
+  const instance = basicLightbox.create(
+    `<img src=${event.target.dataset.source}>`
+  );
+  instance.show();
+  //     document.addEventListener("keydown", onEscPress){
+  //         console.log(event);
+
+  //   };
+}
+
+console.log(galleryItems);
+console.log("hello to save notes");
+
+// const instance = basicLightbox.create(galleryMarkup);
+// instance.show();
 
 // console.log(instance);
