@@ -46,28 +46,28 @@ function createGalleryMarkup(gallery) {
     .join("");
 }
 
-// function onEscPress() {
-
-// }
-
 function onPictureClick(event) {
   event.preventDefault();
-  //   console.log(event.target);
+  // console.log(event.target);
   if (event.target.tagName !== "IMG") return;
 
   console.log(event.target);
   const instance = basicLightbox.create(
     `<img src=${event.target.dataset.source}>`
   );
-  instance.show();
-  //     document.addEventListener("keydown", onEscPress){
-  //         console.log(event);
 
-  //   };
+  instance.show();
+  window.addEventListener("keydown", onPress);
+  function onPress(event) {
+    // console.log(event);
+    if (event.code === "Escape") {
+      instance.close();
+    }
+  }
 }
 
-console.log(galleryItems);
-console.log("hello to save notes");
+// console.log(galleryItems);
+// console.log("hello to save notes");
 
 // const instance = basicLightbox.create(galleryMarkup);
 // instance.show();
