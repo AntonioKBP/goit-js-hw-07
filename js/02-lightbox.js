@@ -28,7 +28,7 @@ import { galleryItems } from "./gallery-items.js";
 const galleryMainDiv = document.querySelector(".gallery");
 // console.log(galleryMainDiv);
 const galleryMarkup = createGalleryMarkup(galleryItems);
-console.log(galleryMarkup);
+// console.log(galleryMarkup);
 
 galleryMainDiv.insertAdjacentHTML("beforeend", galleryMarkup);
 galleryMainDiv.addEventListener("click", onPictureClick);
@@ -47,6 +47,7 @@ function onPictureClick(event) {
   event.preventDefault();
   // console.log(event.target);
   if (event.target.tagName !== "IMG") return;
+  console.log(event);
 
   // console.log(event.target);
   // const instance = basicLightbox.create(

@@ -47,11 +47,10 @@ function onPictureClick(event) {
   instance.show();
   window.addEventListener("keydown", onPress);
   function onPress(event) {
-    console.log(event.code);
+    console.log(event.key);
+    instance.close(() => window.removeEventListener("keydown", onPress));
     if (event.code === "Escape") {
       instance.close();
-
-      window.removeEventListener("keydown", onPress);
     }
   }
 }
