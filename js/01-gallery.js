@@ -45,12 +45,14 @@ function onPictureClick(event) {
   );
 
   instance.show();
-  window.addEventListener("keydown", onPress);
+
+  galleryMainDiv.addEventListener("keydown", onPress);
   function onPress(event) {
     console.log(event.key);
-    instance.close(() => window.removeEventListener("keydown", onPress));
+
     if (event.code === "Escape") {
       instance.close();
+      galleryMainDiv.removeEventListener("keydown", onPress);
     }
   }
 }
