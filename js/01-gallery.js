@@ -47,11 +47,16 @@ function onPictureClick(event) {
   instance.show();
   window.addEventListener("keydown", onPress);
   function onPress(event) {
-    console.log(event);
+    console.log(event.code);
     if (event.code === "Escape") {
       instance.close();
+
       window.removeEventListener("keydown", onPress);
-      window.removeEventListener("keydown");
     }
   }
 }
+
+// 1) У першому завданні при закритті модалки потрібно знімати слухач події keydown.
+// Подивіться тут https://github.com/electerious/basicLightbox
+// як можна реалізувати зняття слухача повністю при закритті модалки.
+//   Також враховуйте, що слухач потрібно також знімати при закритті модалки по кліку.
